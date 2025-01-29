@@ -63,7 +63,8 @@ class CochesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $coche = Coche::findOrFail($id);
+        return view('editarcoche', compact('coche'));
     }
 
     /**
@@ -71,7 +72,23 @@ class CochesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $coche = Coche::findOrFail($id);
+
+        $request->validate([
+            'marca' => 'required',
+            'modelo' => 'required',
+            'color' => 'required',
+            'matricula' => 'required'
+        ]);
+
+        $coche->update([
+            'marca' => $request->marca,
+            'modelo' => $request->modelo,
+            'color' => $request->color,
+            'matricula' => $request->matricula,
+        ]);
+
+        return redirect()->route('coches')->with('success', 'Coche modificado');
     }
 
     /**
@@ -79,6 +96,9 @@ class CochesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $coche = Coche::findOrFail($id);
+        $coche->delete();
+    
+        return redirect()->route('coches')->with('success', 'Coche eliminado correctamente');
     }
 }

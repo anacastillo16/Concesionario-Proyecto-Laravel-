@@ -22,5 +22,6 @@
         <label for="matricula">Matricula</label>
         <input type="text" name="matricula" id="matricula">
         <input type="submit" value="Crear Coche">
+    </form>
 </body>
 </html>

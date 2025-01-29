@@ -11,10 +11,17 @@
         <a href="{{route('coches')}}">Volver a Inicio</a>
     </header>
     
-   <h1>Mi Coche con id {{ $coche -> id}}</h1>
-   {{ $coche->marca }}
-   {{ $coche->modelo }}
-   {{ $coche->color }}
-   {{ $coche->matricula }}
+   <h1>{{ $coche -> marca}}</h1>
+   <p>Datos sobre el coche {{ $coche->marca }}</p>
+   <ul>
+        <li>Marca: {{ $coche->marca }}</li>
+        <li>Modelo: {{ $coche->modelo }}</li>
+        <li>Color: {{ $coche->color }}</li>
+        <li>Matrícula: {{ $coche->matricula }}</li>
+   </ul>
+
+    <a href="{{ route('editarcoche', $coche->id) }}">Editar</a>
+    <a href="{{ route('borrarcoche', $coche->id) }}">Borrar</a>
+    
 </body>
 </html>
