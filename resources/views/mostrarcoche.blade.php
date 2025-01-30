@@ -3,12 +3,13 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Coches</title>
+   <title>Ver Coche</title>
+   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
     <header>
         <h1>Concesionario</h1>
-        <a href="{{route('coches')}}">Volver a Inicio</a>
+        <a href="{{route('coches.index')}}">Volver a Inicio</a>
     </header>
     
    <h1>{{ $coche -> marca}}</h1>
@@ -20,8 +21,12 @@
         <li>Matrícula: {{ $coche->matricula }}</li>
    </ul>
 
-    <a href="{{ route('editarcoche', $coche->id) }}">Editar</a>
-    <a href="{{ route('borrarcoche', $coche->id) }}">Borrar</a>
+    <a href="{{ route('coches.edit', $coche->id) }}" class="editar">Editar</a>
+    <form action="{{ route('coches.destroy', $coche->id) }}" method="post">
+        @csrf
+        @method('delete')
+        <input type="submit" value="Borrar" class="delete">
+    </form>
     
 </body>
 </html>

@@ -44,7 +44,7 @@ class CochesController extends Controller
             'matricula' => 'required'
         ]);
         Coche::create($request->all());
-        return redirect()->route('coches')->with('success', 'Coche creado');
+        return redirect()->route('coches.index')->with('success', 'Coche creado');
  
     }
 
@@ -73,22 +73,8 @@ class CochesController extends Controller
     public function update(Request $request, string $id)
     {
         $coche = Coche::findOrFail($id);
-
-        $request->validate([
-            'marca' => 'required',
-            'modelo' => 'required',
-            'color' => 'required',
-            'matricula' => 'required'
-        ]);
-
-        $coche->update([
-            'marca' => $request->marca,
-            'modelo' => $request->modelo,
-            'color' => $request->color,
-            'matricula' => $request->matricula,
-        ]);
-
-        return redirect()->route('coches')->with('success', 'Coche modificado');
+        $coche->update($request->all());
+        return redirect()->route('coches.show', $coche->id)->with('success', 'Coche actualizado correctamente');
     }
 
     /**
@@ -99,6 +85,6 @@ class CochesController extends Controller
         $coche = Coche::findOrFail($id);
         $coche->delete();
     
-        return redirect()->route('coches')->with('success', 'Coche eliminado correctamente');
+        return redirect()->route('coches.index')->with('success', 'Coche eliminado correctamente');
     }
 }

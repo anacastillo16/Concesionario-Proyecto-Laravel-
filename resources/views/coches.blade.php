@@ -5,23 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coches</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body>
     <header>
         <h1>Concesionario</h1>
-        <a href="{{route('crearcoche')}}">Crear Coche</a>
+        <a href="{{route('coches.create')}}">Crear Coche</a>
     </header>
 
     <main>
-        <form action="{{ route('coches') }}" method="get">
+        <form action="{{ route('coches.index') }}" method="get" class="search-form">
         <input type="text" name="marca" placeholder="Buscar por marca">
         <input type="submit" value="Buscar">
     </form>
 
         <ul>
             @foreach ($coches as $coche)
-                <li> <a href="{{ route('mostrarcoche', $coche->id)}}">{{ $coche->marca }}</a> - {{ $coche->modelo}} </li>
+                <li> <a href="{{ route('coches.show', $coche->id)}}">{{ $coche->marca }}</a> - {{ $coche->modelo}} </li>
             @endforeach
         </ul>
     </main>

@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Editar Coche</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
     <header>
         <h1>Concesionario</h1>
-        <a href="{{route('coches')}}">Volver a Inicio</a>
+        <a href="{{route('coches.index')}}">Volver a Inicio</a>
     </header>
     <h3>Datos actuales del coche: </h3>
     <ul>
@@ -16,9 +17,11 @@
         <li>Modelo: {{$coche->modelo}}</li>
         <li>Color: {{$coche->color}}</li>
         <li>Matricula: {{$coche->matricula}}</li>
-    </ul>   
-    <form action="{{route('editarcoche/{id}')}}" method="post">
+    </ul> 
+    
+    <form action="{{route('coches.update', $coche->id)}}" method="post">
         @csrf
+        @method('put')
         <label for="marca">Marca</label>
         <input type="text" name="marca" id="marca" value="{{$coche->marca}}">
         <label for="modelo">Modelo</label>
@@ -29,5 +32,6 @@
         <input type="text" name="matricula" id="matricula" value="{{$coche->matricula}}">
         <input type="submit" value="Actualizar Coche">
     </form>
+
 </body>
 </html>
