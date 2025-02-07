@@ -14,12 +14,21 @@ class CochesController extends Controller
     public function index(Request $request)
     {
         $query = Coche::query();
-        $request->has('marca');
-       
-        if ($request->has('marca')) {
-            $marcaParaFiltrar = $request->marca;
-            $query->where('marca', 'like', '%'.$marcaParaFiltrar.'%');
+        $request->has('marca');            
+        $marcaParaFiltrar = $request->marca;
+
+        $request->has('color');
+        $colorParaFiltrar = $request->color;
+
+        if ($marcaParaFiltrar) {
+            $query->where('marca', 'like', '%'.$request->marca.'%');
         }
+
+        if ($colorParaFiltrar) {
+            $query->where('color', 'like', '%'.$request->color.'%');
+        }
+
+
         $coches = $query->get();
         return view('coches', compact('coches'));
 }
