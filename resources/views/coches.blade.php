@@ -16,8 +16,13 @@
 
     <main>
         <form action="{{ route('coches.index') }}" method="get" class="search-form">
-        <input type="text" name="marca" placeholder="Buscar por marca">
-        <input type="submit" value="Buscar">
+            <input type="text" name="marca" placeholder="Buscar por marca">
+            <input type="submit" value="Buscar">
+
+            <input type="text" name="color" placeholder="Buscar por color">
+            <input type="submit" value="Buscar">
+
+            <input type="submit" value="Ver todos los coches">
     </form>
 
         <ul>
